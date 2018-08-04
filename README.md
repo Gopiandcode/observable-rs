@@ -3,7 +3,7 @@
 Idiomatic Observables for rust.
 
 
-```
+```rust
 #[derive(Debug, Clone)]
 pub enum Event ( Example1, Example2, Example3 };
 
@@ -18,7 +18,7 @@ ObservableMixin<Event> { &self.observable }
 ```
 
 To create an observer, we need a struct that implements `Observer<Event>`
-```
+```rust
 struct GameListener { }
 
 impl Observer<Event> for GameListener {
@@ -28,14 +28,14 @@ impl Observer<Event> for GameListener {
 }
 ```
 To add an observer, we can need to provide a weak reference to an observable object:
-```
+```rust
     let mut game = Game::new();
     /// we need the clone here to upcast to Rc<Trait>
     let observer : Rc<Observer<Event>> = Rc::new(GameListener{}).clone();
     game.register(Rc::downgrade(&observer));
 ```
 Or, if using the 'views' feature, with my other crate 'dependent_view',
-```
+```rust
     let mut game = Game::new();
     let mut observer : DependentRc<GameListener> = DependentRc::new(GameListener{});
     game.as_mut().register_dependable(&mut observer);
@@ -44,7 +44,7 @@ Or, if using the 'views' feature, with my other crate 'dependent_view',
 ```
 
 And finally, we can send events to our observers:
-```
+```rust
     game.notify_observers(Event::Example1);
 ```
 

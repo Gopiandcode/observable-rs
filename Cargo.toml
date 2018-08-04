@@ -1,5 +1,5 @@
 [package]
-name = "observable"
+name = "observable_rs"
 version = "0.5.0"
 authors = ["Gopiandcode (https://github.com/gopiandcode)"]
 
@@ -10,5 +10,5 @@ dependent_view = {version = "1", optional = true }
 views = ["dependent_view"]
 
 [lib]
-name="observable"
+name="observable_rs"
 path="src/lib.rs"
